@@ -148,8 +148,6 @@ Back.prototype.post = function() {
     type: 'POST',
     dataType:'text'
   });
-	var url = this.canvas.toDataURL();
-
 }
 
 function Front(width, height) {

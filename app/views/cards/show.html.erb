@@ -1,0 +1,21 @@
+<h1 style="color:#fff"><%= @card.id %></h1>
+<a id="download" href="#" style="color:#fff">Download</a>
+<img id="image" src="" alt="">
+<script>
+	var current_url = window.location.href;
+	var data_url = "<%= @card.url %>";
+	var id = <%= @card.id %>;
+	var filename = id + '.png';
+	var link = document.getElementById('download');
+	console.log(current_url);
+	function download(link, data_url, filename) {
+	  link.href = data_url;
+	  link.download = filename;
+	}
+	
+	document.getElementById('download').addEventListener('click', function() {
+		download(this, data_url, filename);
+	});
+
+	document.getElementById('image').src = data_url;
+</script>
