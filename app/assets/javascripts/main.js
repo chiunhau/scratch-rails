@@ -147,8 +147,20 @@ Back.prototype.post = function() {
     data: { card: {url: this.canvas.toDataURL()} },
     type: 'POST',
     dataType:'text'
-  });
+  }).done(function(data){
+  		data = JSON.parse(data);
+  		var latestID = data.id;
+  		document.getElementById("qrcode").innerHTML = '';
+  		var qrcode = new QRCode(document.getElementById("qrcode"), {
+			    text: "http://scratch-rails.herokuapp.com/cards/" + latestID,
+			    width: 128,
+			    height: 128,
+			    colorDark : "#000000",
+			    colorLight : "#ffffff"
+			});
+  	});
 }
+
 
 function Front(width, height) {
 	this.canvas = document.getElementById('frontCanvas');
@@ -204,7 +216,7 @@ Front.prototype.scratch = function() {
 		  			$('#backCanvas').addClass('highlight');
 		  		});
 		  		freezing = true;
-		  		freezeCardWaiting = 180;
+		  		freezeCardWaiting = 300;
 				}
 			}
 		}	
@@ -245,11 +257,14 @@ function onFrame(event){
 		  backCanvas.drawCanvas();
 		}
 		else if (freezeCardWaiting > 0) {
+			if (freezeCardWaiting === 300) {
+				backCanvas.post();
+			};
 			scratching = false;
 			backCanvas.drawCanvas();
 			freezeCardWaiting -= 1;
 			if(freezeCardWaiting === 0) {
-				backCanvas.post();
+				
 				freezing = false;
 				frontCanvas.showCard();
 			}
@@ -259,6 +274,10 @@ function onFrame(event){
 		}
 	}
 }
+
+// function renderQr() {
+// 	$.get
+// }
 
 var sourceCanvas = new Source(800,600);
 sourceCanvas.initCanvas();

@@ -7,7 +7,8 @@ class CardsController < ApplicationController
   def create
   	@card = Card.new(card_params)
   	if @card.save
-  		render :nothing => true
+      
+  		render :json => @card
   	end
 
     data = card_params[:url]
@@ -20,7 +21,13 @@ class CardsController < ApplicationController
 
   def show
     @card = Card.find(params[:id])
-    
+
+  end
+
+  def count
+    latestCard = Card.order('created_at').last
+    latest_id = latestCard.id
+    render :json => latest_id
   end
 
   private

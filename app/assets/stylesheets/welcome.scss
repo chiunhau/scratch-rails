@@ -37,16 +37,24 @@ canvas {
 	filter: contrast(1.3) brightness(2) grayscale(1);
 	-webkit-filter: contrast(1.3) brightness(2) grayscale(1);
 }
-
-.qrcode {
+.image-filter {
+	filter: contrast(1.3) brightness(2) grayscale(1);
+	-webkit-filter: contrast(1.3) brightness(2) grayscale(1);
+}
+.div-qrcode {
 	position: absolute;
 	right: 100px;
 	top: 400px;
 	color: #fff;
 	width: 150px;
-	height: 150px;
+	height: 180px;
 	background-color: gray;
+	text-align: left;
+	padding-left: 22px;
+	padding-top: 20px;
 }
+
+
 span {
 	font-size:3em;
 	color: white;

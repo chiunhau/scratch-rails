@@ -1,21 +1,16 @@
-<h1 style="color:#fff"><%= @card.id %></h1>
-<a id="download" href="#" style="color:#fff">Download</a>
-<img id="image" src="" alt="">
-<script>
-	var current_url = window.location.href;
-	var data_url = "<%= @card.url %>";
-	var id = <%= @card.id %>;
-	var filename = id + '.png';
-	var link = document.getElementById('download');
-	console.log(current_url);
-	function download(link, data_url, filename) {
-	  link.href = data_url;
-	  link.download = filename;
-	}
-	
-	document.getElementById('download').addEventListener('click', function() {
-		download(this, data_url, filename);
-	});
 
-	document.getElementById('image').src = data_url;
+<!-- <a id="download" href="#" style="color:#fff">Download</a> -->
+<img id="image-modified" src="" data-caman="contrast(38) exposure(25) brightness(5) saturation(-100) sharpen(100) "alt="">
+<!-- <img id="image-filter" class="image-filter"   src="" alt=""> -->
+<img id="image-origin"   src="" alt="">
+
+
+<script>
+	
+	var data_url = "<%= @card.url %>";
+	
+	document.getElementById('image-modified').src = data_url;
+	document.getElementById('image-origin').src = data_url;
+	// document.getElementById('image-filter').src = data_url;
+	
 </script>

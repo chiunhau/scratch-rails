@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :cards
-
+  get 'cards/count' => 'cards#count'
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
