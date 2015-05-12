@@ -47,7 +47,6 @@ function Source(width, height) {
 	this.currentFrame = null;
 	this.previousFrame = null;
 	this.canvas = document.getElementById('sourceCanvas');
-	this.diff = [];
 }
 
 Source.prototype.initCanvas = function() {
@@ -70,6 +69,8 @@ Source.prototype.storeFrames = function() {
 	var c = this.canvas.getContext('2d');
 	var width = this.canvas.width;
 	var height = this.canvas.height;
+	//console.log('previousFrame: '+sourceCanvas.previousFrame);
+	//console.log('currentFrame: '+sourceCanvas.currentFrame);
 
 	if (this.previousFrame === null) {	
 		this.previousFrame = c.getImageData(0, 0, width, height);
@@ -105,6 +106,7 @@ Source.prototype.detect = function() {
 			}			
 		}
 	}
+	frontCanvas.scratch();
 }
 
 function Back(width, height) {
@@ -186,8 +188,8 @@ Front.prototype.fill = function() {
 
 Front.prototype.scratch = function() {
 
+	
 	var diffs = diff.length;
-	console.log(diff);
 	if(diffs > 0) {
 		for(var i = 0; i < diffs; i ++) {
 			var index = diff[i][1] * COLS + diff[i][0];
@@ -215,6 +217,8 @@ Front.prototype.showCard = function() {
 	this.bricks = [];
 	this.fill();
 	showCardWaiting = 60;
+	sourceCanvas.previousFrame = null;
+	sourceCanvas.currentFrame = null;
 
 }
 
@@ -230,29 +234,30 @@ function onFrame(event){
 			showCardWaiting -= 1;
 			if (showCardWaiting === 0) {
 				frontCanvas.cleared = 0;
-				sourceCanvas.previousFrame == null;
-				sourceCanvas.currentFrame == null;
+				sourceCanvas.previousFrame = null;
+				sourceCanvas.currentFrame = null;
 				diff = [];
 				scratching = true;
-				console.log('going to scratch');
-				console.log()
 			};
 
 		}
 		else if (scratching) {
+
 			sourceCanvas.drawCanvas();
 		  backCanvas.drawCanvas();
-		  frontCanvas.scratch();
 		}
 		else if (freezeCardWaiting > 0) {
-			backCanvas.drawCanvas();
 			scratching = false;
+			backCanvas.drawCanvas();
 			freezeCardWaiting -= 1;
 			if(freezeCardWaiting === 0) {
 				backCanvas.post();
 				freezing = false;
 				frontCanvas.showCard();
 			}
+		}
+		else {
+			console.log('what!?');
 		}
 	}
 }
