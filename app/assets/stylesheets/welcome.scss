@@ -44,19 +44,39 @@ canvas {
 .div-qrcode {
 	position: absolute;
 	right: 100px;
-	top: 400px;
+	top: 525px;
 	color: #fff;
 	width: 150px;
 	height: 180px;
-	background-color: gray;
+	background-color: #4d4d4d;
 	text-align: left;
 	padding-left: 22px;
-	padding-top: 20px;
+	padding-top: 15px;
 }
 
+footer {
+	position: absolute;
+	bottom: 0;
+	color: #bdbdbd;
+	margin: 10px;
+}
 
 span {
 	font-size:3em;
 	color: white;
 	margin-top: 50px;
+}
+a {
+	&:link {
+		color: #bdbdbd;
+	}
+	&:active {
+		color: #bdbdbd;
+	}
+	&:visited {
+		color: #bdbdbd;
+	}
+	&:hover {
+		color: #bdbdbd;
+	}
 }
