@@ -1,5 +1,6 @@
 <div class="gallery">
-	<% @cards.each do |card| %>
-		<%= link_to image_tag(card.url, width: '300', class: 'thumb'), card_path(card.id) %>
+	<% (1..@latest_id).each do |i| %>
+		<% path = '/store/' + i.to_s + '.png' %>
+		<%= link_to image_tag(path, width: '300', class: 'thumb'), card_path(i) %>
 	<% end %>
 </div>

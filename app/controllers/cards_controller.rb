@@ -1,7 +1,9 @@
 class CardsController < ApplicationController
   require 'base64'
+
   def index
-  	@cards = Card.all
+  	latest_card = Card.last
+    @latest_id = latest_card.id
   end
 
   def create
