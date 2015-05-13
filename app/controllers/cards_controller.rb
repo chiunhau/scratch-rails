@@ -7,27 +7,19 @@ class CardsController < ApplicationController
   def create
   	@card = Card.new(card_params)
   	if @card.save
-      
-  		render :json => @card
+  		render :json => @card.id
   	end
 
     data = card_params[:url]
     image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
     
-    File.open("#{Rails.root}/public/store/somefilename.png", 'wb') do |f|
+    File.open("#{Rails.root}/public/store/#{@card.id}.png", 'wb') do |f|
       f.write image_data
     end
   end
 
   def show
-    @card = Card.find(params[:id])
-
-  end
-
-  def count
-    latestCard = Card.order('created_at').last
-    latest_id = latestCard.id
-    render :json => latest_id
+    redirect_to "/store/#{params[:id]}.png"
   end
 
   private
