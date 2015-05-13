@@ -47,12 +47,9 @@ function Source(width, height) {
 	this.currentFrame = null;
 	this.previousFrame = null;
 	this.canvas = document.getElementById('sourceCanvas');
-}
-
-Source.prototype.initCanvas = function() {
 	this.canvas.width = this.width;
 	this.canvas.height = this.height;
-};
+}
 
 Source.prototype.drawCanvas = function() {
 	var c = this.canvas.getContext('2d');
@@ -110,12 +107,9 @@ Source.prototype.detect = function() {
 }
 
 function Back(width, height) {
-	this.canvas = document.getElementById('backCanvas');
 	this.width = width;
 	this.height = height;
-}
-
-Back.prototype.initCanvas = function() {
+	this.canvas = document.getElementById('backCanvas');
 	this.canvas.width = this.width;
 	this.canvas.height = this.height;
 }
@@ -133,7 +127,6 @@ Back.prototype.drawCanvas = function() {
 	else{
 		c.putImageData(this.captureFrame, 0, 0);
 	}
-	
 }
 
 Back.prototype.capture = function(argument) {
@@ -161,20 +154,16 @@ Back.prototype.post = function() {
   	});
 }
 
-
 function Front(width, height) {
-	this.canvas = document.getElementById('frontCanvas');
 	this.width = width;
 	this.height = height;
+	this.canvas = document.getElementById('frontCanvas');
+	this.canvas.width = this.width;
+	this.canvas.height = this.height;
 	this.colWidth = width / COLS;
 	this.rowHeight = height / ROWS;
 	this.bricks = [];
 	this.cleared = 0;
-}
-
-Front.prototype.initCanvas = function() {
-	this.canvas.width = this.width;
-	this.canvas.height = this.height;
 }
 
 Front.prototype.fill = function() {
@@ -197,8 +186,6 @@ Front.prototype.fill = function() {
 }
 
 Front.prototype.scratch = function() {
-
-	
 	var diffs = diff.length;
 	if(diffs > 0) {
 		for(var i = 0; i < diffs; i ++) {
@@ -209,7 +196,6 @@ Front.prototype.scratch = function() {
 
 				if (this.cleared === 1200) {
 					scratching  = false;
-					
 					backCanvas.capture();
 					$(function(){
 						$('#backCanvas').removeClass('general');
@@ -232,14 +218,8 @@ Front.prototype.showCard = function() {
 
 }
 
-Front.prototype.recover = function() {
-	
-}
-
 function onFrame(event){
-
 	if (initialized) {
-
 		if (showCardWaiting > 0 && !scratching) {
 			showCardWaiting -= 1;
 			if (showCardWaiting === 0) {
@@ -249,10 +229,8 @@ function onFrame(event){
 				diff = [];
 				scratching = true;
 			};
-
 		}
 		else if (scratching) {
-
 			sourceCanvas.drawCanvas();
 		  backCanvas.drawCanvas();
 		}
@@ -260,11 +238,10 @@ function onFrame(event){
 			if (freezeCardWaiting === 300) {
 				backCanvas.post();
 			};
-			scratching = false;
 			backCanvas.drawCanvas();
 			freezeCardWaiting -= 1;
-			if(freezeCardWaiting === 0) {
-				
+
+			if(freezeCardWaiting === 0) {	
 				freezing = false;
 				frontCanvas.showCard();
 			}
@@ -275,20 +252,12 @@ function onFrame(event){
 	}
 }
 
-// function renderQr() {
-// 	$.get
-// }
-
 var sourceCanvas = new Source(800,600);
-sourceCanvas.initCanvas();
 
 var backCanvas = new Back(800, 600);
-backCanvas.initCanvas();
 
 var frontCanvas = new Front(800, 600);
-frontCanvas.initCanvas();
 frontCanvas.showCard();
 
 view.size = new Size(this.width, this.height);
 getWebcam();
-
