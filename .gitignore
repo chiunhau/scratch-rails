@@ -15,7 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
-#/public/store/*.png
-#/public/store/thumb/*.png
+/public/store/*.png
+/public/store/thumb/*.png
 .DS_Store
-*.png
+
