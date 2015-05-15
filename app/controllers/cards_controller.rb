@@ -2,14 +2,21 @@ class CardsController < ApplicationController
   require 'base64'
 
   def index
-  	latest_card = Card.last
-    @latest_id = latest_card.id
+    # latest_card = Card.last
+    # @latest_id = latest_card.id
+
+    cards = Card.all
+    @card_ids = Array.new
+    
+    cards.each do |card|
+      @card_ids.push(card.id)
+    end
   end
 
   def create
   	@card = Card.new(card_params)
   	if @card.save
-  		render :json => @card.id
+  		render :json => @card
   	end
 
     data = card_params[:url]
@@ -18,6 +25,10 @@ class CardsController < ApplicationController
     File.open("#{Rails.root}/public/store/#{@card.id}.png", 'wb') do |f|
       f.write image_data
     end
+
+    image = MiniMagick::Image.open("#{Rails.root}/public/store/#{@card.id}.png")
+    image.resize "250x250"
+    image.write "#{Rails.root}/public/store/thumb/#{@card.id}.png"
   end
 
   def show
