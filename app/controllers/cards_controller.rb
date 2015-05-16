@@ -2,9 +2,6 @@ class CardsController < ApplicationController
   require 'base64'
 
   def index
-    # latest_card = Card.last
-    # @latest_id = latest_card.id
-
     cards = Card.all
     @card_ids = Array.new
     
@@ -26,13 +23,30 @@ class CardsController < ApplicationController
       f.write image_data
     end
 
-    image = MiniMagick::Image.open("#{Rails.root}/public/store/#{@card.id}.png")
+    convert_to_grayscale(@card.id)
+    convert_to_thumbnail(@card.id)
+  end
+
+  def convert_to_thumbnail(card_id)
+    image = MiniMagick::Image.open("#{Rails.root}/public/store/#{card_id}.png")
     image.resize "250x250"
     image.write "#{Rails.root}/public/store/thumb/#{@card.id}.png"
   end
 
+  def convert_to_grayscale(card_id)
+    image = MiniMagick::Image.open("#{Rails.root}/public/store/#{card_id}.png")
+    image.colorspace("Gray")
+    image.brightness_contrast("25x50")
+    logo = MiniMagick::Image.new("#{Rails.root}/public/inno.png")
+    result = image.composite(logo) do |c|
+      c.compose "Over"    
+      c.geometry "+20+20"
+    end
+    result.write "#{Rails.root}/public/store/grayscale/#{card_id}.png"
+  end
+
   def show
-    redirect_to "/store/#{params[:id]}.png"
+    @card_id = Card.find(params[:id]).id
   end
 
   private

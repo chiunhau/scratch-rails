@@ -1,6 +1,4 @@
 <% @card_ids.each do |card_id| %>
-	<% thumb_path = '/store/thumb/' + card_id.to_s + '.png' %>
-	<% origin_path = '/store/' + card_id.to_s + '.png' %>
-	<%= link_to image_tag(thumb_path, class: 'gallery'), origin_path %>
+	<%= link_to image_tag("/store/thumb/#{card_id}.png", class: "gallery"), card_path(card_id) %>
 <% end %>
 
