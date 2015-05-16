@@ -36,7 +36,7 @@ class CardsController < ApplicationController
   def convert_to_grayscale(card_id)
     image = MiniMagick::Image.open("#{Rails.root}/public/store/#{card_id}.png")
     image.colorspace("Gray")
-    image.brightness_contrast("40x50")
+    image.brightness_contrast("40x55")
     logo = MiniMagick::Image.new("#{Rails.root}/public/inno.png")
     result = image.composite(logo) do |c|
       c.compose "Over"    
