@@ -1,4 +1,5 @@
 class CardsController < ApplicationController
+  
   require 'base64'
 
   def index
