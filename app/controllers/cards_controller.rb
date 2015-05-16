@@ -37,7 +37,7 @@ class CardsController < ApplicationController
     image = MiniMagick::Image.open("#{Rails.root}/public/store/#{card_id}.png")
     image.colorspace("Gray")
     image.brightness_contrast("25x50")
-    image.gamma(1.7)
+    #image.gamma(1.7)
     logo = MiniMagick::Image.new("#{Rails.root}/public/inno.png")
     result = image.composite(logo) do |c|
       c.compose "Over"    
