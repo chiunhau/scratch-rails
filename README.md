@@ -1,11 +1,11 @@
 # scratch-rails
 
-## 使用技術與Plugin
+## 阿～用了這些東西技術、套件才完成的
 - Rails
 - GetUserMedia
 - QRCodeJS
-- CamanJS
 - PaperJS
 - CSS Filters
+-	mini_magick
 
 
