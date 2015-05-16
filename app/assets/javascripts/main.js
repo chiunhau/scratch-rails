@@ -145,7 +145,7 @@ Back.prototype.post = function() {
   		var card = data;
   		document.getElementById("qrcode").innerHTML = '';
   		var qrcode = new QRCode(document.getElementById("qrcode"), {
-			    text: "http://scratch-rails.herokuapp.com/store/" + card.id + ".png",
+			    text: "http://scratch-rails.herokuapp.com/cards/" + card.id,
 			    width: 128,
 			    height: 128,
 			    colorDark : "#000000",
