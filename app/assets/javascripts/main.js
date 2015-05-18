@@ -9,6 +9,7 @@ var showCardWaiting = 0;
 var scratching = false;
 var freezing = false;
 
+
 function getWebcam(){
 	navigator.getMedia =  navigator.getUserMedia ||
         								navigator.webkitGetUserMedia ||
