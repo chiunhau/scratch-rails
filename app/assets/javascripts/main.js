@@ -17,9 +17,9 @@ function getWebcam(){
 
   if (navigator.getMedia) {
 		navigator.getMedia (
-			{	
+			{
 				video: true
-			}, 
+			},
 			function(localMediaStream){
 				console.log('success callback');
 				video.src = window.URL.createObjectURL(localMediaStream);
@@ -29,7 +29,7 @@ function getWebcam(){
 		      	onFrame();
 		      },1000);
 		    };
-			}, 
+			},
 		  function(e){
 	   		console.log(e);
 	   	}
@@ -69,7 +69,7 @@ Source.prototype.storeFrames = function() {
 	//console.log('previousFrame: '+sourceCanvas.previousFrame);
 	//console.log('currentFrame: '+sourceCanvas.currentFrame);
 
-	if (this.previousFrame === null) {	
+	if (this.previousFrame === null) {
 		this.previousFrame = c.getImageData(0, 0, width, height);
 
 	}
@@ -100,7 +100,7 @@ Source.prototype.detect = function() {
 			// motion detected
 			if((dr + dg + db) >= 90) {
 				diff.push([c, r]);
-			}			
+			}
 		}
 	}
 	frontCanvas.scratch();
@@ -145,7 +145,7 @@ Back.prototype.post = function() {
   		var card = data;
   		document.getElementById("qrcode").innerHTML = '';
   		var qrcode = new QRCode(document.getElementById("qrcode"), {
-			    text: "http://scratch-rails.herokuapp.com/cards/" + card.id,
+			    text: "http://scratch-rails.herokuapp.com/cards/" + card.hashed_id,
 			    width: 128,
 			    height: 128,
 			    colorDark : "#000000",
@@ -205,7 +205,7 @@ Front.prototype.scratch = function() {
 		  		freezeCardWaiting = 300;
 				}
 			}
-		}	
+		}
 	}
 }
 
@@ -241,7 +241,7 @@ function onFrame(event){
 			backCanvas.drawCanvas();
 			freezeCardWaiting -= 1;
 
-			if(freezeCardWaiting === 0) {	
+			if(freezeCardWaiting === 0) {
 				freezing = false;
 				frontCanvas.showCard();
 			}
