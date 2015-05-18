@@ -15,11 +15,11 @@ class CardsController < ApplicationController
   def create
   	@card = Card.new(card_params)
   	if @card.save
-      hashed = Digest::MD5.hexdigest(@card.id.to_s)
-      @card.update({:hashed_id => hashed})
-  		render :json => @card
+  		render :json => @card.id
   	end
 
+    hashed = Digest::MD5.hexdigest(@card.id.to_s)
+    @card.update({:hashed_id => hashed})
     data = card_params[:url]
     image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
 
