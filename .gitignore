@@ -16,6 +16,6 @@
 !/log/.keep
 /tmp
 /public/store/*.png
+/public/store/grayscale/*.png
 /public/store/thumb/*.png
 .DS_Store
-
