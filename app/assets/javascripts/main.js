@@ -148,8 +148,8 @@ Back.prototype.post = function() {
   		document.getElementById("qrcode").innerHTML = '';
   		var qrcode = new QRCode(document.getElementById("qrcode"), {
 			    text: "http://scratch-rails.herokuapp.com/cards/" + card.hashed_id,
-			    width: 128,
-			    height: 128,
+			    width: 160,
+			    height: 160,
 			    colorDark : "#000000",
 			    colorLight : "#ffffff"
 			});
