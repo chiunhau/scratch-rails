@@ -204,7 +204,7 @@ Front.prototype.scratch = function() {
 		  			$('#backCanvas').addClass('highlight');
 		  		});
 		  		freezing = true;
-		  		freezeCardWaiting = 900;
+		  		freezeCardWaiting = 700;
 				}
 			}
 		}
