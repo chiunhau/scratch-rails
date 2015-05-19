@@ -2,8 +2,8 @@ var video = document.querySelector('video');
 var diff = [];
 var COLS = 40;
 var ROWS = 30;
-var WIDTH = 800;
-var HEIGHT = 600;
+var WIDTH = 1200;
+var HEIGHT = 900;
 var initialized = false;
 var showCardWaiting = 0;
 var scratching = false;
@@ -254,11 +254,11 @@ function onFrame(event){
 	}
 }
 
-var sourceCanvas = new Source(800,600);
+var sourceCanvas = new Source(1200,900);
 
-var backCanvas = new Back(800, 600);
+var backCanvas = new Back(1200,900);
 
-var frontCanvas = new Front(800, 600);
+var frontCanvas = new Front(1200,900);
 frontCanvas.showCard();
 
 view.size = new Size(this.width, this.height);
