@@ -143,10 +143,11 @@ Back.prototype.post = function() {
     dataType:'text'
   }).done(function(data){
   		data = JSON.parse(data);
-  		var card_id = data;
+  		console.log(data);
+  		var card_hashed_id = data;
   		document.getElementById("qrcode").innerHTML = '';
   		var qrcode = new QRCode(document.getElementById("qrcode"), {
-			    text: "http://scratch-rails.herokuapp.com/cards/" + card_id,
+			    text: "http://scratch-rails.herokuapp.com/cards/" + card_hashed_id,
 			    width: 128,
 			    height: 128,
 			    colorDark : "#000000",

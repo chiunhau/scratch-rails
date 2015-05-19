@@ -17,7 +17,7 @@ class CardsController < ApplicationController
   	if @card.save
       hashed = Digest::MD5.hexdigest(@card.id.to_s)
       @card.update({:hashed_id => hashed})
-  		render :json => @card.hashed_id
+  		render :json => @card
   	end
 
     
