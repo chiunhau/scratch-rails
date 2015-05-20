@@ -1,6 +1,6 @@
-<h2><span class="datz5">人體刮刮樂，展示區</span>	</h2>
+<!-- <h2><span class="datz5">人體刮刮樂，展示區</span>	</h2> -->
 <% @card_hashed_ids.each do |card_hashed_id| %>
 	<%= link_to image_tag("/store/thumb/#{card_hashed_id}.png", class: "gallery"), card_path(card_hashed_id) %>
 <% end %>
 
-<script>setInterval(function(){ location.reload(); }, 15000);</script>
+<script>setInterval(function(){ location.reload(); }, 30000);</script>
