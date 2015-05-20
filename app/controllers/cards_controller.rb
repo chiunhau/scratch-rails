@@ -10,6 +10,7 @@ class CardsController < ApplicationController
     cards.each do |card|
       @card_hashed_ids.push(card.hashed_id)
     end
+    @card_hashed_ids.reverse!
   end
 
   def create
