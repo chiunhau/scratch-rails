@@ -16,10 +16,10 @@ class CardsController < ApplicationController
   def create
   	@card = Card.new(card_params)
   	if @card.save
-      hashed = Digest::MD5.hexdigest(@card.id.to_s)
-      @card.update({:hashed_id => hashed})
-  		#render :json => hashed
-      render :nothing => true
+      @hashed = Digest::MD5.hexdigest(@card.id.to_s)
+      @card.update({:hashed_id => @hashed})
+  		render :json => @hashed
+      # render :nothing => true
   	end
 
     

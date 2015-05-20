@@ -141,20 +141,17 @@ Back.prototype.post = function() {
     data: { card: {url: this.canvas.toDataURL()} },
     type: 'POST',
     dataType:'text'
-  });
-   // }).done(function(data){
-  	// 	data = JSON.parse(data);
-  	// 	console.log(data);
-  	// 	var card = data;
-  	// 	document.getElementById("qrcode").innerHTML = '';
-  	// 	var qrcode = new QRCode(document.getElementById("qrcode"), {
-			//     text: "http://scratch-rails.herokuapp.com/cards/" + card.hashed_id,
-			//     width: 160,
-			//     height: 160,
-			//     colorDark : "#000000",
-			//     colorLight : "#ffffff"
-			// });
-  	// });
+  }).done(function(data){
+  		var hashed_id = data;
+  		document.getElementById("qrcode").innerHTML = '';
+  		var qrcode = new QRCode(document.getElementById("qrcode"), {
+			    text: "http://scratch-rails.herokuapp.com/cards/" + hashed_id,
+			    width: 160,
+			    height: 160,
+			    colorDark : "#000000",
+			    colorLight : "#ffffff"
+			});
+  	});
 }
 
 function Front(width, height) {

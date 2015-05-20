@@ -49,9 +49,11 @@ canvas {
 	width: 200px;
 	height: 200px;
 	background-color: #808080;
-	text-align: left;
-	padding-left: 22px;
-	padding-top: 15px;
+	text-align: center;
+	img {
+		margin: 0 auto;
+		margin-top: 20px;
+	}
 }
 
 footer {
