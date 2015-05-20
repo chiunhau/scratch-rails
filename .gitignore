@@ -15,7 +15,7 @@
 /log/*
 !/log/.keep
 /tmp
-/public
+
 /public/store/*.png
 /public/store/grayscale/*.png
 /public/store/thumb/*.png
