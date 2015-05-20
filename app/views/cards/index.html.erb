@@ -1,6 +1,45 @@
 <!-- <h2><span class="datz5">人體刮刮樂，展示區</span>	</h2> -->
-<% @card_hashed_ids.each do |card_hashed_id| %>
-	<%= link_to image_tag("/store/thumb/#{card_hashed_id}.png", class: "gallery"), card_path(card_hashed_id) %>
-<% end %>
+<div class="container">
+	<div class="index-top" id="index-top">
+	<% @card_hashed_ids.each do |card_hashed_id| %>
+		<%= link_to image_tag("/store/thumb/#{card_hashed_id}.png", class: "gallery"), card_path(card_hashed_id) %>
+	<% end %>	
+</div>
+</div>
 
-<script>setInterval(function(){ location.reload(); }, 15000);</script>
+<div class="index-bottom">
+<%=  image_tag("ball-compressor.png", class: "boom")%>
+<%=  image_tag("logotype-compressor.png", class: "logotype")%>
+</div>
+
+<script>
+
+
+$(function() {
+
+	function refresh() {
+		$container = $('#index-top'); 
+		$.get("<%= refresh_cards_path %>", function(data){
+			// data = JSON.parse(data);
+			console.log(data);
+			var num = data.length;
+			$container.html("");
+			for(var i = 0; i < num; i ++) {
+				$container.append("<img class='gallery' src='/store/thumb/" + data[i] + ".png'>");
+			};
+		});
+		// $.ajax({
+	 //    url: '/cards/refresh.json',
+	 //    type: 'GET',
+	 //    dataType:'json'
+	 //  }).done(function(data){
+	 //  		console.log(data);
+	 //  	});
+	};
+	setInterval(function(){ 
+		refresh();
+	}, 15000);
+});
+
+
+</script>

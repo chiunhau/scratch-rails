@@ -4,13 +4,27 @@ class CardsController < ApplicationController
   require 'digest/md5'
 
   def index
-    cards = Card.all
+    cards = Card.last(50)
     @card_hashed_ids = Array.new
 
     cards.each do |card|
       @card_hashed_ids.push(card.hashed_id)
     end
     @card_hashed_ids.reverse!
+  end
+
+  def refresh
+    cards = Card.last(50)
+    @latest_50 = Array.new
+
+    cards.each do |card|
+      @latest_50.push(card.hashed_id)
+    end
+
+    @latest_50.reverse!
+    respond_to do |format|
+      format.json { render json: @latest_50 }
+    end
   end
 
   def create

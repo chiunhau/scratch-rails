@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :cards
-  get 'cards/count' => 'cards#count'
+  resources :cards do
+    collection do
+      get 'refresh'
+    end
+  end
+  # get 'cards/count' => 'cards#count'
+  # get 'cards/refresh'
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
