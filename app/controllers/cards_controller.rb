@@ -19,7 +19,6 @@ class CardsController < ApplicationController
       @hashed = Digest::MD5.hexdigest(@card.id.to_s)
       @card.update({:hashed_id => @hashed})
   		render :json => @hashed
-      # render :nothing => true
   	end
 
     
