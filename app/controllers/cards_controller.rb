@@ -17,24 +17,25 @@ class CardsController < ApplicationController
   	if @card.save
       hashed = Digest::MD5.hexdigest(@card.id.to_s)
       @card.update({:hashed_id => hashed})
-  		render :json => @card
+  		#render :json => hashed
+      render :nothing => true
   	end
 
     
-    # data = card_params[:url]
-    # image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
+    data = card_params[:url]
+    image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
 
-    # File.open("#{Rails.root}/public/store/#{@card.hashed_id}.png", 'wb') do |f|
-    #   f.write image_data
-    # end
+    File.open("#{Rails.root}/public/store/#{@card.hashed_id}.png", 'wb') do |f|
+      f.write image_data
+    end
 
-    # convert_to_grayscale(@card.hashed_id)
-    # convert_to_thumbnail(@card.hashed_id)
+    convert_to_grayscale(@card.hashed_id)
+    convert_to_thumbnail(@card.hashed_id)
   end
 
   def convert_to_thumbnail(card_hashed_id)
     image = MiniMagick::Image.open("#{Rails.root}/public/store/#{card_hashed_id}.png")
-    image.resize "250x250"
+    image.resize "200x200"
     image.write "#{Rails.root}/public/store/thumb/#{card_hashed_id}.png"
   end
 
