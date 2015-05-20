@@ -7,6 +7,7 @@ body,html {
 	text-align: center;
 	background-color: #424242;
 	padding: 15px;
+	text-align: center;
 }
 video {
 	display: none;
@@ -82,8 +83,8 @@ footer {
 	bottom: 0;
 	color: #bdbdbd;
 	margin: 10px auto;
-	width: 100%;
-
+	left: 0;
+	right: 0;
 }
 
 span {
