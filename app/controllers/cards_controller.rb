@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   require 'digest/md5'
 
   def index
-    cards = Card.last(50)
+    cards = Card.last(40)
     @card_hashed_ids = Array.new
 
     cards.each do |card|
@@ -14,7 +14,7 @@ class CardsController < ApplicationController
   end
 
   def refresh
-    cards = Card.last(50)
+    cards = Card.last(40)
     @latest_50 = Array.new
 
     cards.each do |card|
