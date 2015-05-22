@@ -22,6 +22,7 @@ class CardsController < ApplicationController
     end
 
     @latest_50.reverse!
+    
     respond_to do |format|
       format.json { render json: @latest_50 }
     end
@@ -35,7 +36,6 @@ class CardsController < ApplicationController
   		render :json => @hashed
   	end
 
-    
     data = card_params[:url]
     image_data = Base64.decode64(data['data:image/png;base64,'.length .. -1])
 
