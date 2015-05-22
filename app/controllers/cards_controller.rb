@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   require 'digest/md5'
 
   def index
-    cards = Card.last(40)
+    cards = Card.last(45)
     @card_hashed_ids = Array.new
 
     cards.each do |card|
@@ -14,7 +14,7 @@ class CardsController < ApplicationController
   end
 
   def refresh
-    cards = Card.last(40)
+    cards = Card.last(45)
     @latest_50 = Array.new
 
     cards.each do |card|
@@ -56,7 +56,7 @@ class CardsController < ApplicationController
   def convert_to_grayscale(card_hashed_id)
     image = MiniMagick::Image.open("#{Rails.root}/public/store/#{card_hashed_id}.png")
     image.colorspace("Gray")
-    image.brightness_contrast("40x55")
+    image.brightness_contrast("40x45")
     logo = MiniMagick::Image.new("#{Rails.root}/public/inno.png")
     result = image.composite(logo) do |c|
       c.compose "Over"
