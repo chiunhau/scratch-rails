@@ -1,6 +1,8 @@
 <!-- get @card_id -->
 <h3 style="color:#fff">彩卷編號：<%= @card.id %> </h3>
 
+<%= image_tag(@card.url) %>
+
 <p style="color:#fff;margin-top:40px;">革新位元紀念照</p>
 <%= image_tag("/store/grayscale/#{@card.hashed_id}.png") %>
 
